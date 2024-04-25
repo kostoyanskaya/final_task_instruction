@@ -1,7 +1,7 @@
-# Номер успешной посылки: 112863724.
+# Номер успешной посылки: 112983428.
 def decipher_instruction(instruction: str) -> str:
     """Расшифровывает сжатые сообщения."""
-    storage = []
+    storage: list[tuple[str, str]] = []
     result = ''
     line = ''
 
@@ -13,9 +13,9 @@ def decipher_instruction(instruction: str) -> str:
             storage.append((result, line))
             result, line = '', ''
         elif detail == ']':
-            detail, line = storage.pop()
-            result *= int(line)
-            result = detail + result
+            saved_result, saved_line = storage.pop()
+            result *= int(saved_line)
+            result = saved_result + result
             line = ''
         else:
             result += detail
